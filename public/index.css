@@ -6,8 +6,8 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 body {
-  overflow: hidden;
   transition: all o.6s ease-in-out !important ;
 }

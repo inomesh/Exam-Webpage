@@ -1,6 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 
 const SelectedSection = ({ sections, currentSectionName = "" }) => {
+  const checkActive = (e) => {
+    if (
+      currentSectionName !== "" &&
+      currentSectionName !== e.target.textContent
+    ) {
+      alert("Jumping to another section is prohibited");
+    }
+  };
 
   const sectionButtons = (i) => (
     <button
@@ -10,7 +18,7 @@ const SelectedSection = ({ sections, currentSectionName = "" }) => {
       style={{
         color: "var(--btn-text-color)",
       }}
-      // onClick={changeColor}
+      onClick={checkActive}
     >
       {Object.keys(sections[i])}
     </button>

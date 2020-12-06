@@ -22,3 +22,34 @@
 
 
              
+             // setValues({
+    //   ...values,
+    //   examTitle: examTitle,
+    //   examDurationInMinutes: examDurationInMinutes,
+    //   sections: data.exam.sections,
+    //   currentSectionArray:
+    //     data.exam.sections[0][Object.keys(data.exam.sections[0])[0]],
+    //   currentSection: Object.keys(data.exam.sections[0])[0],
+    //   currentSectionIndex: 0,
+    //   currentSectionName: Object.keys(data.exam.sections[0])[0],
+    //   currentObject:
+    //     data.exam.sections[0][Object.keys(data.exam.sections[0])[0]][0],
+    //   currentObjectIndex: 0,
+    // });
+
+
+     // setValues({
+    //   ...values,
+    //   currentObject:
+    //     sections[currentSectionIndex][currentSectionName][
+    //       currentObjectIndex + 1
+    //     ],
+    //   // data.exam.sections[0][Object.keys(data.exam.sections[0])[0]][currentObjectIndex + 1],
+    //   currentObjectIndex: currentObjectIndex + 1,
+    // });
+    // console.log(currentSection);
+    // console.log(sections[currentSectionIndex][currentSectionName]);
+
+    // currentObject:
+        //   data.exam.sections[0][Object.keys(data.exam.sections[0])[0]][0],
+        // currentObjectIndex: 0,

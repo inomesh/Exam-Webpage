@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const QuestionSection = ({
   questionNumber = "Question Number",
@@ -9,13 +9,22 @@ const QuestionSection = ({
 }) => {
   const { quesText, option1, option2, option3, option4 } = questionObject;
 
+
   const highlight = (event) => {
-    console.log(event.target);
-    event.target.className = "bg-info text-white col-11 p-3 border border-info";
-    setValues({ ...values, alreadyFilledWithColor: true });
+    if (!alreadyFilledWithColor) {
+      event.target.className =
+        "bg-info text-white col-11 p-3 border border-info";
+      setValues({ ...values, alreadyFilledWithColor: true });
+    }
   };
 
-  // useEffect(() => {}, [values]);
+  const Dehighlight = () => {
+    setValues({ ...values, alreadyFilledWithColor: false });
+  };
+
+  useEffect(() => {
+    Dehighlight();
+  }, []);
 
   return (
     <section className="my-5 px-4 container-fluid">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Foot from "./foot";
 import Head from "./head";
 import QuestionSection from "./QuestionSection";
@@ -19,6 +19,8 @@ const App = () => {
     currentObjectIndex: "",
     currentObject: {},
     alreadyFilledWithColor: false,
+    completed: false,
+    timer: true,
   });
 
   const {
@@ -32,6 +34,8 @@ const App = () => {
     alreadyFilledWithColor,
     currentObjectIndex,
     currentObject,
+    completed,
+    timer,
   } = values;
 
   const show = async () => {
@@ -39,22 +43,28 @@ const App = () => {
       "http://5.181.217.46/DesignFacility/useGETMethodForTheResponse/[nomesh]"
     );
     const data = await res.json();
+
+    // destructuring
+    const { examTitle, examDurationInMinutes, sections } = data.exam;
+
     setValues({
       ...values,
-      examTitle: data.exam.examTitle,
-      examDurationInMinutes: data.exam.examDurationInMinutes,
-      sections: data.exam.sections,
-      currentSectionArray:
-        data.exam.sections[0][Object.keys(data.exam.sections[0])[0]],
-      currentSection: Object.keys(data.exam.sections[0])[0],
+      examTitle: examTitle,
+      examDurationInMinutes: examDurationInMinutes,
+      sections: sections,
+      currentSectionArray: sections[0][Object.keys(sections[0])[0]],
+      currentSection: Object.keys(sections[0])[0],
       currentSectionIndex: 0,
-      currentSectionName: Object.keys(data.exam.sections[0])[0],
-      currentObject:
-        data.exam.sections[0][Object.keys(data.exam.sections[0])[0]][0],
+      currentSectionName: Object.keys(sections[0])[0],
+      currentObject: sections[0][Object.keys(sections[0])[0]][0],
       currentObjectIndex: 0,
     });
 
     // console.log( data.exam.sections[1][Object.keys(data.exam.sections[1])[0]]);
+
+    // checking destructuring
+    // console.log(examTitle, examDurationInMinutes, sections);
+    // console.log(sections[0]);
     // console.log(currentSectionArray);
   };
 
@@ -66,7 +76,11 @@ const App = () => {
     <div>
       <div className="row no-gutters container-fluid">
         <div className="col-9" style={{ height: "100vh !important" }}>
-          <Head examTitle={examTitle} totalTime={examDurationInMinutes} />
+          <Head
+            examTitle={examTitle}
+            totalTime={examDurationInMinutes}
+            timer={timer}
+          />
           <SelectedSection
             sections={sections}
             currentSectionName={currentSectionName}
@@ -78,6 +92,7 @@ const App = () => {
             questionObject={currentObject}
             alreadyFilledWithColor={alreadyFilledWithColor}
           />
+
           <Foot
             setValues={setValues}
             values={values}

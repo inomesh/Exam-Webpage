@@ -1,20 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const Head = ({ examTitle = "Exam Title", totalTime = "Time Left" }) => {
-  // const [remainingTime, setRemainingTime] = useState(0);
+const Head = ({ examTitle = "Exam Title", totalTime = 0, timer = false }) => {
+  const [seconds, setSeconds] = useState(parseInt(totalTime * 60));
 
-  const remainingTime = (totalTime) => {
-    let rem = typeof totalTime === "number" ? totalTime : eval(totalTime);
-    let sec = 59;
-    let clock = "00:00";
-    let clear = setInterval(() => {
-      clock = "0" + rem + ":" + `${sec > 0 ? sec - 1 : 59}`;
-      if (clock === "00:00") {
-        clearInterval(clear);
-      }
-    }, 1000);
-    return clock;
-  };
+  useEffect(() => {
+    const counter =
+      timer && seconds > 0 && setInterval(() => setSeconds(seconds - 1), 1000);
+    if (!counter) {
+      // alert("just checking");
+    }
+    return () => {
+      clearInterval(counter);
+    };
+  }, [seconds]);
 
   return (
     <section className="mt-2">
@@ -37,7 +35,7 @@ const Head = ({ examTitle = "Exam Title", totalTime = "Time Left" }) => {
             className="text-light px-4 py-3 btn btn-lg rounded font-weight-bold"
             style={{ background: "#1769b8", color: "var(--btn-text-color)" }}
           >
-            {remainingTime()}
+            {seconds}sec
           </h4>
         </div>
       </div>

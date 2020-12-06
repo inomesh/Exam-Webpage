@@ -14,12 +14,14 @@ const Foot = ({
     alreadyFilledWithColor,
     currentObjectIndex,
     currentObject,
+    completed,
   } = values;
 
   const saveNext = () => {
     if (
+      !completed &&
       currentObjectIndex + 1 <=
-      sections[currentSectionIndex][currentSectionName].length - 1
+        sections[currentSectionIndex][currentSectionName].length - 1
     ) {
       setValues({
         ...values,
@@ -29,41 +31,30 @@ const Foot = ({
           ],
         currentObjectIndex: currentObjectIndex + 1,
       });
-      // setReload(!reload);
     } else if (
       currentObjectIndex + 1 ===
       sections[currentSectionIndex][currentSectionName].length
     ) {
       // console.log("reached limit");
-      setValues({
-        ...values,
-        currentSection: Object.keys(sections[currentSectionIndex + 1])[0],
-        currentSectionIndex: currentSectionIndex + 1,
-        currentSectionName: Object.keys(sections[currentSectionIndex + 1])[0],
-        currentObject:
-          sections[currentSectionIndex + 1][
-            Object.keys(sections[currentSectionIndex + 1])[0]
-          ][0],
-        currentObjectIndex: 0,
-
-        // currentObject:
-        //   data.exam.sections[0][Object.keys(data.exam.sections[0])[0]][0],
-        // currentObjectIndex: 0,
-      });
+      try {
+        setValues({
+          ...values,
+          currentSection: Object.keys(sections[currentSectionIndex + 1])[0],
+          currentSectionIndex: currentSectionIndex + 1,
+          currentSectionName: Object.keys(sections[currentSectionIndex + 1])[0],
+          currentObject:
+            sections[currentSectionIndex + 1][
+              Object.keys(sections[currentSectionIndex + 1])[0]
+            ][0],
+          currentObjectIndex: 0,
+        });
+      } catch (error) {
+        console.error(error);
+      }
     } else {
-      console.log("end");
+      setValues({ ...values, completed: true });
     }
-    // setValues({
-    //   ...values,
-    //   currentObject:
-    //     sections[currentSectionIndex][currentSectionName][
-    //       currentObjectIndex + 1
-    //     ],
-    //   // data.exam.sections[0][Object.keys(data.exam.sections[0])[0]][currentObjectIndex + 1],
-    //   currentObjectIndex: currentObjectIndex + 1,
-    // });
-    // console.log(currentSection);
-    // console.log(sections[currentSectionIndex][currentSectionName]);
+
     setReload(!reload);
 
     // for head sections
@@ -78,6 +69,30 @@ const Foot = ({
       }
     });
   };
+
+  const afterClearResponse = (e) => {
+    setValues({
+      ...values,
+      examTitle: "",
+      examDurationInMinutes: 0,
+      sections: [],
+      currentSectionArray: [],
+      currentSection: "",
+      currentSectionIndex: 0,
+      currentSectionName: "",
+      currentObjectIndex: "",
+      currentObject: {},
+      alreadyFilledWithColor: false,
+      completed: false,
+      timer: false,
+    });
+    setReload(!reload);
+    setTimeout(() => {
+      window.history.go()
+    }, 160);
+  };
+
+  // useEffect(() => {}, [values]);
 
   return (
     <section
@@ -94,7 +109,10 @@ const Foot = ({
               >
                 Mark for Review & Next
               </button>
-              <button className="btn btn-light btn-lg mx-2 text-info font-weight-bold rounded">
+              <button
+                onClick={afterClearResponse}
+                className="btn btn-light btn-lg mx-2 text-info font-weight-bold rounded"
+              >
                 Clear Response
               </button>
             </div>
