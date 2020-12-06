@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Foot from "./foot";
 import Head from "./head";
 import QuestionSection from "./QuestionSection";
@@ -59,13 +59,6 @@ const App = () => {
       currentObject: sections[0][Object.keys(sections[0])[0]][0],
       currentObjectIndex: 0,
     });
-
-    // console.log( data.exam.sections[1][Object.keys(data.exam.sections[1])[0]]);
-
-    // checking destructuring
-    // console.log(examTitle, examDurationInMinutes, sections);
-    // console.log(sections[0]);
-    // console.log(currentSectionArray);
   };
 
   useEffect(() => {
@@ -80,6 +73,10 @@ const App = () => {
             examTitle={examTitle}
             totalTime={examDurationInMinutes}
             timer={timer}
+            setValues={setValues}
+            values={values}
+            reload={reload}
+            setReload={setReload}
           />
           <SelectedSection
             sections={sections}

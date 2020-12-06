@@ -53,3 +53,10 @@
     // currentObject:
         //   data.exam.sections[0][Object.keys(data.exam.sections[0])[0]][0],
         // currentObjectIndex: 0,
+
+        // console.log( data.exam.sections[1][Object.keys(data.exam.sections[1])[0]]);
+
+    // checking destructuring
+    // console.log(examTitle, examDurationInMinutes, sections);
+    // console.log(sections[0]);
+    // console.log(currentSectionArray);

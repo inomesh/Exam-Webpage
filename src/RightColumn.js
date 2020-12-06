@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import userImage from "./user.svg";
 
 const RightColumn = ({
@@ -14,6 +14,7 @@ const RightColumn = ({
     currentSectionIndex,
     currentObjectIndex,
     currentObject,
+    completed,
   } = values;
 
   const handleClick = (event) => {
@@ -182,6 +183,11 @@ const RightColumn = ({
             <button
               className="btn btn-lg btn-block btn-outline-info"
               style={{ borderRadius: "30px" }}
+              onClick={(e) => {
+                if (completed) {
+                  alert("Congratulations you've completed the test");
+                }
+              }}
             >
               SUBMIT EXAM
             </button>

@@ -1,13 +1,24 @@
 import React, { useState, useEffect } from "react";
 
-const Head = ({ examTitle = "Exam Title", totalTime = 0, timer = false }) => {
-  const [seconds, setSeconds] = useState(parseInt(totalTime * 60));
+const Head = ({
+  examTitle = "Exam Title",
+  totalTime = 0,
+  timer = false,
+  setValues = (f) => f,
+  values = {},
+  reload = undefined,
+  setReload = (f) => f,
+}) => {
+  const time = parseInt(totalTime * 60);
+
+  const [seconds, setSeconds] = useState(time);
 
   useEffect(() => {
     const counter =
       timer && seconds > 0 && setInterval(() => setSeconds(seconds - 1), 1000);
     if (!counter) {
-      // alert("just checking");
+      setValues({ ...values, timer: false });
+      setReload(!reload);
     }
     return () => {
       clearInterval(counter);

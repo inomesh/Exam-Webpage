@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 const Foot = ({
   setValues = (f) => f,
@@ -35,7 +35,6 @@ const Foot = ({
       currentObjectIndex + 1 ===
       sections[currentSectionIndex][currentSectionName].length
     ) {
-      // console.log("reached limit");
       try {
         setValues({
           ...values,
@@ -88,11 +87,9 @@ const Foot = ({
     });
     setReload(!reload);
     setTimeout(() => {
-      window.history.go()
+      window.history.go();
     }, 160);
   };
-
-  // useEffect(() => {}, [values]);
 
   return (
     <section
