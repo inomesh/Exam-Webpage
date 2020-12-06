@@ -1,0 +1,13 @@
+:root {
+  --btn-background-color: #2f6690;
+  --btn-text-color: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  overflow: hidden;
+  transition: all o.6s ease-in-out !important ;
+}

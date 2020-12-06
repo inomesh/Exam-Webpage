@@ -1,0 +1,24 @@
+<li
+                className="btn btn-lg bg-info text-white font-weight-bold border border-info"
+                style={{ borderRadius: "50%" }}
+                onClick={handleClick}
+              >
+                <span>2</span>
+              </li>
+              <li
+                className="btn btn-lg bg-info text-white font-weight-bold border border-info"
+                style={{ borderRadius: "50%" }}
+                onClick={handleClick}
+              >
+                <span>3</span>
+              </li>
+              <li
+                className="btn btn-lg bg-info text-white font-weight-bold border border-info"
+                style={{ borderRadius: "50%" }}
+                onClick={handleClick}
+              >
+                <span>4</span>
+              </li>
+
+
+             
