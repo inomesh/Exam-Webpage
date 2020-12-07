@@ -20,7 +20,6 @@ const App = () => {
     currentObject: {},
     alreadyFilledWithColor: false,
     completed: false,
-    timer: true,
   });
 
   const {
@@ -35,7 +34,6 @@ const App = () => {
     currentObjectIndex,
     currentObject,
     completed,
-    timer,
   } = values;
 
   const show = async () => {
@@ -69,15 +67,7 @@ const App = () => {
     <div>
       <div className="row no-gutters container-fluid">
         <div className="col-9" style={{ height: "100vh !important" }}>
-          <Head
-            examTitle={examTitle}
-            totalTime={examDurationInMinutes}
-            timer={timer}
-            setValues={setValues}
-            values={values}
-            reload={reload}
-            setReload={setReload}
-          />
+          <Head examTitle={examTitle} totalTime={examDurationInMinutes} />
           <SelectedSection
             sections={sections}
             currentSectionName={currentSectionName}
