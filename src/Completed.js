@@ -2,7 +2,7 @@ import React from "react";
 
 const Completed = () => {
   const cancel = (e) => {
-    let ele = e.target.parentElement.parentElement.parentElement.parentElement;
+    let ele = document.querySelector(".modal");
     ele.removeAttribute("style");
   };
 

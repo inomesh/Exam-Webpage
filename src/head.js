@@ -6,8 +6,8 @@ class Clock extends React.Component {
     super(props);
     this.minutes = this.props.totalTime;
     this.state = {
-      seconds: 0,
-      minutes: this.minutes || 0,
+      seconds: 10,
+      minutes: 0,
     };
   }
 
@@ -23,14 +23,14 @@ class Clock extends React.Component {
     if (this.state.minutes === 0 && this.state.seconds === 0) {
       return;
     } else if (this.state.seconds === 0) {
-      this.setState({
-        minutes: this.state.minutes - 1,
+      this.setState((state, props) => ({
+        minutes: state.minutes - 1,
         seconds: 59,
-      });
+      }));
     } else {
-      this.setState({
-        seconds: this.state.seconds - 1,
-      });
+      this.setState((state, props) => ({
+        seconds: state.seconds - 1,
+      }));
     }
   }
 
